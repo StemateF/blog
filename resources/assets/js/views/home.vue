@@ -12,6 +12,7 @@ import PostItemComponentVue from '../components/PostItemComponent.vue';
 		components:{post:PostItemComponentVue},
 		created(){
 			this.getPosts()
+			console.log('sssss')
 		},
 		data:function(){
 			return {posts: [
@@ -21,7 +22,8 @@ import PostItemComponentVue from '../components/PostItemComponent.vue';
 		methods:{
 			getPosts(){
 				axios.get('/api/posts').then(response=>{
-					this.posts=response.data;
+					
+					this.posts=response.data.data;
 					})
 		}}
 	}

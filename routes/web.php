@@ -20,3 +20,7 @@ Route::prefix('/')->group(function () {
     });
     Route::view('{any}', 'welcome')->where('any', '.*');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

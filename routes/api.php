@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,19 +11,23 @@ use Illuminate\Http\Request;
 |
  */
 
-Route::middleware('api')->group(function () {
-    Route::get(
-        '/posts',
-        function (Request $request) {
-            return [
-                ['name' => 'test post 1', 'excerpt' => 'weeeeeeeeeeeee boyyyy', "id" => 1],
-                ['name' => 'test post 2', 'excerpt' => 'weeeeeeeeeeeee boyyyy', "id" => 2],
-                ['name' => 'test post 3', 'excerpt' => 'weeeeeeeeeeeee boyyyy', "id" => 3],
-            ];
-        }
-    );
+Route::namespace ('API')->middleware('api')->group(
+    function () {
+        Route::apiResource('posts', 'PostsController');
 
-    Route::get('post', function () {
-        return ['title' => 'test post 2', 'body' => 'weeeeeeeeeeeee boyyyy', "id" => 2];
-    });
-});
+        // Route::get(
+        //     '/posts',
+        //     function (Request $request) {
+        //         return [
+        //             ['name' => 'test post 1', 'excerpt' => 'weeeeeeeeeeeee boyyyy', "id" => 1],
+        //             ['name' => 'test post 2', 'excerpt' => 'weeeeeeeeeeeee boyyyy', "id" => 2],
+        //             ['name' => 'test post 3', 'excerpt' => 'weeeeeeeeeeeee boyyyy', "id" => 3],
+        //         ];
+        //     }
+        // );
+
+        // Route::get('post', function () {
+        //     return ['title' => 'test post 2', 'body' => 'weeeeeeeeeeeee boyyyy', "id" => 2];
+        // });
+    }
+);
