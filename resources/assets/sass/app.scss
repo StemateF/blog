@@ -1,0 +1,10 @@
+// Fonts
+// Variables
+@import "variables";
+@import "~vue-material/dist/vue-material.min.css";
+@import "~vue-material/dist/theme/default";
+@import "~bootstrap/scss/bootstrap-grid";
+@import "~bootstrap/scss/utilities/spacing";
+.md-app {
+    height: 100vh;
+}
