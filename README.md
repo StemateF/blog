@@ -1,4 +1,4 @@
-<p align="center"><img src="Logo/SF-Logo.png" alt="Proje ismi" height="200px"></p>
+<p align="center"><img src="Logo/SF-Logo.png" alt="Proje ismi" height="50px"></p>
 
 # Blog 
 ![alt text](https://lh6.googleusercontent.com/m95_wKhcPvtzf67faZrkJqqJl-Pb-RgfG71cRYpcoayMqnB1OcGFI75Cna51FOGH2V4DIBkk0GRpwzOrBF14=w1600-h719)
