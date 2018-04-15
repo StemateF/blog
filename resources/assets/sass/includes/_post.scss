@@ -1,0 +1,9 @@
+.post {
+    & .overlay {
+        background: linear-gradient(rgba(white, .0), rgba(white, .9));
+        position: absolute;
+        bottom: 0;
+        height: 100%;
+        width: 100%;
+    }
+}

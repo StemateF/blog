@@ -2,7 +2,6 @@ import Vue from 'vue';
 import router from "./routes"
 import store from './store'
 import BootstrapVue from 'bootstrap-vue'
-
 import { mapMutations, mapState } from 'vuex';
 
 window._ = require('lodash');
@@ -29,24 +28,43 @@ const vm = new Vue({
     el: '#app',
     router,
     store,
+    created() {
+        if (this.auth == null) {
+            this.getUser();
+
+        }
+    },
     methods: {
-        login() {
-            console.log(login);
+        getUser: function() {
+            axios.get("/api/auth").then(response => {
+                console.log(response);
+                if (response.data.data == null) {
+                    store.commit('updateAuthState', false);
+                } else {
+                    store.commit('updateAuthState', true);
+                    this.user = response.data.data;
+                }
+
+            });
         },
-        ...mapMutations(['showLoading'])
+        ...mapMutations(['showLoading', "updateAuthState"])
     },
     computed: {
-        ...mapState(['login', 'auth', 'loading'])
+        ...mapState(['auth', 'loading'])
+    },
+    data: {
+        user: null,
     }
 
 });
-window.vm = vm;
+
 router.beforeEach((to, from, next) => {
     console.log(this.loading);
 
     store.commit('showLoading', true)
     next()
 });
+
 router.afterEach(() => {
     store.commit('showLoading', false)
 });

@@ -3,7 +3,7 @@
         <div v-if="!auth">
             <button v-b-modal.loginModal class="btn btn-outline-primary">Sign in</button>
             <b-modal  centered  title="Sign in with" id="loginModal">
-                <button class="btn github btn-block ml-0"> Github</button>
+                <a href="/login/github" class="btn github btn-block ml-0"> Github</a>
                 <button class="btn bitbucket btn-block ml-0"> Bitbucket</button>
                 <button class="btn linkedin btn-block ml-0"> Linkedin</button>
                 <div slot="modal-footer"></div>

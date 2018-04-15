@@ -10440,8 +10440,34 @@ table.b-table > tbody > tr.b-table-details > td {
   }
 }
 
+.post .overlay {
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, 0.9)));
+  background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9));
+  position: absolute;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+}
+
 .bg-white {
   background-color: white;
+}
+
+.btn-fa {
+  color: #ced4da !important;
+  position: relative;
+}
+
+.btn-fa:not(:last-of-type)::after {
+  content: "";
+  position: absolute;
+  height: 30%;
+  width: 1px;
+  right: -1px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  background-color: #ced4da;
 }
 
 .btn {
@@ -10464,6 +10490,11 @@ table.b-table > tbody > tr.b-table-details > td {
   color: white;
   background-color: #333;
   margin-left: 8px;
+}
+
+body,
+html {
+  color: #495057;
 }
 
 #app a,

@@ -15,7 +15,7 @@ mix.browserSync({
         target: 'localhost:8000',
         reqHeaders: function() {
             return {
-                host: "localhost:3000"
+                host: "localhost:3002"
             };
         }
     },

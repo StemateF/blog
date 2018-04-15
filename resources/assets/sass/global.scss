@@ -1,4 +1,21 @@
 @import "./includes/loader";
+@import "~bootstrap/scss/functions";
+@import "./includes/post";
 .bg-white {
     background-color: white;
+}
+
+.btn-fa {
+    color: gray('400') !important;
+    position: relative;
+    &:not(:last-of-type)::after {
+        content: "";
+        position: absolute;
+        height: 30%;
+        width: 1px;
+        right: -1px;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: gray('400');
+    }
 }

@@ -1,31 +1,36 @@
-// Fonts
-// Variables
-@import "variables";
-@import "~bootstrap/scss/bootstrap";
-@import "~bootstrap-vue/dist/bootstrap-vue";
-@import "global";
-.btn {
-    margin-left: 8px;
-    &.bitbucket {
-        color: white;
-        background-color: $bitbucket;
+    // Fonts
+    // Variables
+    @import "variables";
+    @import "~bootstrap/scss/bootstrap";
+    @import "~bootstrap-vue/dist/bootstrap-vue";
+    @import "global";
+    .btn {
         margin-left: 8px;
+        &.bitbucket {
+            color: white;
+            background-color: $bitbucket;
+            margin-left: 8px;
+        }
+        &.linkedin {
+            color: white;
+            background-color: $linkedin;
+            margin-left: 8px;
+        }
+        &.github {
+            color: white;
+            background-color: $github;
+            margin-left: 8px;
+        }
     }
-    &.linkedin {
-        color: white;
-        background-color: $linkedin;
-        margin-left: 8px;
+    
+    body,
+    html {
+        color: gray("700")
     }
-    &.github {
-        color: white;
-        background-color: $github;
-        margin-left: 8px;
+    
+    #app {
+        a,
+        .btn-link {
+            text-decoration: none !important;
+        }
     }
-}
-
-#app {
-    a,
-    .btn-link {
-        text-decoration: none !important;
-    }
-}

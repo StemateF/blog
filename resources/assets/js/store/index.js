@@ -8,7 +8,7 @@ export default new Vuex.Store({
 
         error: null,
         loading: true,
-        auth: true,
+        auth: null,
     },
     mutations
 })

@@ -10,6 +10,11 @@ const routes = [{
         component: require('./views/post.vue')
 
     }, {
+        path: "/category/:slug",
+        name: "category",
+        component: require('./views/category.vue')
+
+    }, {
         path: "/categories",
         name: "categories",
         component: require('./views/home.vue')

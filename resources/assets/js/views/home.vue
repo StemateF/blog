@@ -2,7 +2,7 @@
 
 	<div >
 		<div  v-for="post in posts">
-			<post v-bind:title="post.title" v-bind:excerpt="post.excerpt" v-bind:id="post.id" ></post>
+			<post v-bind:post="post" ></post>
 		</div>
 	</div>
 </template>

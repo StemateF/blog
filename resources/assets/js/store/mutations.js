@@ -3,8 +3,8 @@ export default {
 
         state.loading = payload;
     },
-    updateAuth(state) {
-        state.auth = true;
+    updateAuthState(state, payload) {
+        state.auth = payload;
 
     }
 }
