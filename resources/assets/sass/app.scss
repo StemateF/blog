@@ -1,10 +1,31 @@
 // Fonts
 // Variables
 @import "variables";
-@import "~vue-material/dist/vue-material.min.css";
-@import "~vue-material/dist/theme/default";
-@import "~bootstrap/scss/bootstrap-grid";
-@import "~bootstrap/scss/utilities/spacing";
-.md-app {
-    height: 100vh;
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-vue/dist/bootstrap-vue";
+@import "global";
+.btn {
+    margin-left: 8px;
+    &.bitbucket {
+        color: white;
+        background-color: $bitbucket;
+        margin-left: 8px;
+    }
+    &.linkedin {
+        color: white;
+        background-color: $linkedin;
+        margin-left: 8px;
+    }
+    &.github {
+        color: white;
+        background-color: $github;
+        margin-left: 8px;
+    }
+}
+
+#app {
+    a,
+    .btn-link {
+        text-decoration: none !important;
+    }
 }

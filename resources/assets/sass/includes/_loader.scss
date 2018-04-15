@@ -1,0 +1,36 @@
+.loader {
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: rgba(theme-color("primary"), .3);
+    overflow: hidden;
+    .line {
+        background-color: theme-color("primary");
+        width: 100%;
+        height: 5px;
+        transition: all .2s;
+    }
+    &.loading {
+        position: fixed;
+        z-index: 10;
+        .line {
+            width: 20%;
+            position: fixed;
+            animation: move 1.3s linear .2s infinite;
+        }
+    }
+}
+
+
+/* The animation code */
+
+@keyframes move {
+    0% {
+        left: -20%;
+    }
+    100% {
+        left: 120%
+    }
+}

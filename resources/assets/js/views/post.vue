@@ -1,29 +1,37 @@
 <template>
 	<div>
-  		<h1>{{ title }}</h1>
-  		<div>{{ body }}</div>
-  </div>
+			<h1>{{ post.title }}</h1>
+			<div>{{ post.body }}</div>
+			<router-link :to="{ name : 'post', params: { id:2 }}">ssssssssss</router-link>
+	</div>
 </template>
 <script>
 export default {
-   created(){
-			this.getPost(this.$route.params.id)
-			
-		},
-		data:function(){
-			return {title:'',body:''}
-		},
-		methods:{
-			getPost(id){
-				axios.get('/api/post',{
-					params:{
-						post:id
-					}
-				}).then(response=>{
-					this.title=response.data.title;
-					this.body=response.data.body;
-					
-					})
-		}}
-}
+	data() {
+		return { post: "" };
+	},
+
+	beforeRouteEnter: (to, from, next) => {
+		console.log("before");
+		axios.get("/api/posts/" + to.params.id).then(response => {
+			next(vm => {
+				vm.setData(response.data.data);
+			});
+		});
+	},
+
+	beforeRouteUpdate(to, from, next) {
+		this.post = '';
+		axios.get("/api/posts/" + to.params.id).then(response => {
+			this.setData( response.data.data);
+			next();
+		});
+	},
+	
+	methods: {
+		setData(post) {
+			this.post = post;
+		}
+	}
+};
 </script>

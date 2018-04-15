@@ -10,7 +10,22 @@ let mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
-mix.browserSync('127.0.0.1:8000');
-
+mix.browserSync({
+    proxy: {
+        target: 'localhost:8000',
+        reqHeaders: function() {
+            return {
+                host: "localhost:3000"
+            };
+        }
+    },
+    files: [
+        'resources/views/**/*.php',
+        'public/**/*.html',
+        'public/**/*.php',
+        'public/js/**/*.js',
+        '!public/css/**/*.css'
+    ],
+});
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+    .sass('resources/assets/sass/app.scss', 'public/css');

@@ -1,30 +1,37 @@
 <template>
+
 	<div >
 		<div  v-for="post in posts">
-			<post v-bind:name="post.name" v-bind:excerpt="post.excerpt" v-bind:id="post.id" ></post>
+			<post v-bind:title="post.title" v-bind:excerpt="post.excerpt" v-bind:id="post.id" ></post>
 		</div>
 	</div>
 </template>
 
 <script>
 import PostItemComponentVue from '../components/PostItemComponent.vue';
+import {mapMutations} from 'vuex';
+
 	export default {
 		components:{post:PostItemComponentVue},
 		created(){
+		this.$store.commit('showLoading',true)
 			this.getPosts()
-			console.log('sssss')
 		},
 		data:function(){
-			return {posts: [
-			
-				]}
+			return {
+					posts: []
+				}
 		},
 		methods:{
 			getPosts(){
 				axios.get('/api/posts').then(response=>{
 					
 					this.posts=response.data.data;
+					this.$store.commit('showLoading',false)
+					
 					})
-		}}
+		},
+		  ...mapMutations(['showLoading'])
+		}
 	}
 </script>

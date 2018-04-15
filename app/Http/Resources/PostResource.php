@@ -18,6 +18,11 @@ class PostResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'excerpt' => $this->excerp,
+            'body' => $this->body,
+            'created_at' => $this->created_at,
+            'image' => $this->image,
+            //@todo implement category
+            'category' => 'front-end',
         ];
     }
 }
