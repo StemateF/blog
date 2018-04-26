@@ -6,5 +6,10 @@ export default {
     updateAuthState(state, payload) {
         state.auth = payload;
 
+    },
+    updateCurrentUser(state, payload) {
+        state.user = payload;
+        console.log(payload)
     }
+
 }

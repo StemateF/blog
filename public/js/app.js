@@ -21545,13 +21545,15 @@ module.exports = __webpack_require__(233);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "vm", function() { return vm; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__routes__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_bootstrap_vue__ = __webpack_require__(94);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__(19);
-var _this2 = this;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__store_api__ = __webpack_require__(235);
+var _this = this;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -21581,34 +21583,20 @@ var vm = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     store: __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */],
     created: function created() {
         if (this.auth == null) {
-            this.getUser();
+            Object(__WEBPACK_IMPORTED_MODULE_5__store_api__["a" /* getAuthStatus */])();
         }
     },
 
-    methods: _extends({
-        getUser: function getUser() {
-            var _this = this;
-
-            axios.get("/api/auth").then(function (response) {
-                console.log(response);
-                if (response.data.data == null) {
-                    __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].commit('updateAuthState', false);
-                } else {
-                    __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].commit('updateAuthState', true);
-                    _this.user = response.data.data;
-                }
-            });
-        }
-    }, Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["b" /* mapMutations */])(['showLoading', "updateAuthState"])),
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["c" /* mapState */])(['auth', 'loading'])),
     data: {
-        user: null
-    }
+        showSideBar: true
+    },
+    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["b" /* mapMutations */])(['showLoading', "updateAuthState"])),
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["c" /* mapState */])(['auth', 'loading', 'user']))
 
 });
 
 __WEBPACK_IMPORTED_MODULE_1__routes__["a" /* default */].beforeEach(function (to, from, next) {
-    console.log(_this2.loading);
+    console.log(_this.loading);
 
     __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].commit('showLoading', true);
     next();
@@ -21897,17 +21885,20 @@ var routes = [{
     name: "post",
     component: __webpack_require__(87)
 
-}, {
-    path: "/category/:slug",
-    name: "category",
-    component: __webpack_require__(90)
+},
+// {
+//     path: "/category/:slug",
+//     name: "category",
+//     component: require('./views/category.vue')
 
-}, {
-    path: "/categories",
-    name: "categories",
-    component: __webpack_require__(25)
+// }
+// , {
+//     path: "/categories",
+//     name: "categories",
+//     component: require('./views/categories.vue')
 
-}, {
+// },
+{
     path: "/about",
     name: "about",
     component: __webpack_require__(25)
@@ -24702,6 +24693,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['post']
@@ -24733,26 +24729,16 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _c("div", { staticClass: "card-title" }, [
-          _c(
-            "div",
-            { staticClass: "categories" },
-            [
-              _c(
-                "router-link",
-                {
-                  staticClass: "text-primary text-uppercase",
-                  attrs: {
-                    to: {
-                      name: "category",
-                      params: { slug: _vm.post.category.name }
-                    }
-                  }
-                },
-                [_vm._v(_vm._s(_vm.post.category.name))]
-              ),
-              _vm._v(" /\n                    "),
+      _c(
+        "div",
+        { staticClass: "card-body" },
+        [
+          _c("div", { staticClass: "card-title" }, [
+            _c("div", { staticClass: "categories" }, [
+              _c("span", { staticClass: "text-primary text-uppercase" }, [
+                _vm._v(_vm._s(_vm.post.category.name))
+              ]),
+              _vm._v(" / \n                    "),
               _c(
                 "time",
                 {
@@ -24767,34 +24753,95 @@ var render = function() {
                   )
                 ]
               )
-            ],
-            1
-          ),
+            ]),
+            _vm._v(" "),
+            _c(
+              "h1",
+              { staticClass: "text-primary" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    attrs: { to: { name: "post", params: { id: _vm.post.id } } }
+                  },
+                  [_vm._v(_vm._s(_vm.post.title))]
+                )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-text position-relative" }, [
+            _c("p", [_vm._v(_vm._s(_vm.post.excerpt))]),
+            _vm._v(" "),
+            _c("div", { staticClass: "overlay" })
+          ]),
           _vm._v(" "),
           _c(
-            "h1",
-            { staticClass: "text-primary" },
-            [
-              _c(
-                "router-link",
-                {
-                  attrs: { to: { name: "post", params: { id: _vm.post.id } } }
-                },
-                [_vm._v(_vm._s(_vm.post.title))]
-              )
-            ],
-            1
+            "router-link",
+            {
+              staticClass: "more-link",
+              attrs: { to: { name: "post", params: { id: _vm.post.id } } }
+            },
+            [_vm._v("Read more...")]
           )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-text position-relative" }, [
-          _c("p", [_vm._v(_vm._s(_vm.post.excerpt))]),
-          _vm._v(" "),
-          _c("div", { staticClass: "overlay" })
-        ])
-      ]),
+        ],
+        1
+      ),
       _vm._v(" "),
-      _vm._m(0)
+      _c("div", { staticClass: "card-footer bg-white" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "d-inline-block align-middle" }, [
+          _c("div", [
+            _c("a", { attrs: { href: "#" } }, [
+              _vm._v(_vm._s(_vm.post.author.details.name))
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "btn-group",
+              attrs: { role: "group", "aria-label": "Social Details" }
+            },
+            [
+              _vm.post.author.socialLinks.facebook != undefined
+                ? _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-fa btn-sm",
+                      attrs: { href: _vm.post.author.socialLinks.facebook }
+                    },
+                    [_c("i", { staticClass: "fab fa-facebook-f" })]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.post.author.socialLinks.github != undefined
+                ? _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-fa btn-sm",
+                      attrs: { href: _vm.post.author.socialLinks.github }
+                    },
+                    [_c("i", { staticClass: "fab fa-github" })]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.post.author.socialLinks.twitter != undefined
+                ? _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-fa btn-sm",
+                      attrs: { href: _vm.post.author.socialLinks.twitter }
+                    },
+                    [_c("i", { staticClass: "fab fa-twitter" })]
+                  )
+                : _vm._e()
+            ]
+          )
+        ])
+      ])
     ])
   ])
 }
@@ -24803,45 +24850,16 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-footer bg-white" }, [
-      _c("span", [
-        _c("img", {
-          staticClass: "img-fluid rounded-circle",
-          attrs: {
-            width: "50",
-            src:
-              "https://www.sephora.com/productimages/product/p427643-av-06-zoom.jpg",
-            alt: "Avatar"
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "d-inline-block align-middle" }, [
-        _c("div", [
-          _c("a", { attrs: { href: "#" } }, [_vm._v("Stemate Florentin")])
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "btn-group",
-            attrs: { role: "group", "aria-label": "Social Details" }
-          },
-          [
-            _c("a", { staticClass: "btn btn-fa btn-sm" }, [
-              _c("i", { staticClass: "fab fa-github" })
-            ]),
-            _vm._v(" "),
-            _c("a", { staticClass: "btn btn-fa btn-sm" }, [
-              _c("i", { staticClass: "fab fa-facebook-f" })
-            ]),
-            _vm._v(" "),
-            _c("a", { staticClass: "btn btn-fa btn-sm" }, [
-              _c("i", { staticClass: "fab fa-twitter" })
-            ])
-          ]
-        )
-      ])
+    return _c("span", [
+      _c("img", {
+        staticClass: "img-fluid rounded-circle",
+        attrs: {
+          width: "50",
+          src:
+            "https://www.sephora.com/productimages/product/p427643-av-06-zoom.jpg",
+          alt: "Avatar"
+        }
+      })
     ])
   }
 ]
@@ -24939,38 +24957,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	data: function data() {
-		return { post: "" };
-	},
+  beforeCreate: function beforeCreate() {
+    this.$root.showSideBar = false;
+  },
+  data: function data() {
+    return { post: "" };
+  },
 
 
-	beforeRouteEnter: function beforeRouteEnter(to, from, next) {
-		console.log("before");
-		axios.get("/api/posts/" + to.params.id).then(function (response) {
-			next(function (vm) {
-				vm.setData(response.data.data);
-			});
-		});
-	},
+  beforeRouteEnter: function beforeRouteEnter(to, from, next) {
+    console.log("before");
+    axios.get("/api/posts/" + to.params.id).then(function (response) {
+      next(function (vm) {
+        vm.setData(response.data.data);
+      });
+    });
+  },
 
-	beforeRouteUpdate: function beforeRouteUpdate(to, from, next) {
-		var _this = this;
+  beforeRouteUpdate: function beforeRouteUpdate(to, from, next) {
+    var _this = this;
 
-		this.post = '';
-		axios.get("/api/posts/" + to.params.id).then(function (response) {
-			_this.setData(response.data.data);
-			next();
-		});
-	},
+    this.post = "";
+    axios.get("/api/posts/" + to.params.id).then(function (response) {
+      _this.setData(response.data.data);
+      next();
+    });
+  },
 
 
-	methods: {
-		setData: function setData(post) {
-			this.post = post;
-		}
-	}
+  methods: {
+    setData: function setData(post) {
+      this.post = post;
+    }
+  }
 });
 
 /***/ }),
@@ -24981,21 +25004,22 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("h1", [_vm._v(_vm._s(_vm.post.title))]),
+  return _c("div", { staticClass: "card" }, [
+    _c("img", {
+      staticClass: "card-img-top",
+      attrs: {
+        src:
+          "https://i1.wp.com/wp.laravel-news.com/wp-content/uploads/2018/04/20-eloquent-tricks.png?resize=1400%2C709",
+        alt: "Card image cap"
+      }
+    }),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-body" }, [
+      _c("h5", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.post.title))]),
       _vm._v(" "),
-      _c("div", [_vm._v(_vm._s(_vm.post.body))]),
-      _vm._v(" "),
-      _c(
-        "router-link",
-        { attrs: { to: { name: "post", params: { id: 2 } } } },
-        [_vm._v("ssssssssss")]
-      )
-    ],
-    1
-  )
+      _c("p", { staticClass: "card-text" }, [_vm._v(_vm._s(_vm.post.body))])
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -25008,73 +25032,8 @@ if (false) {
 }
 
 /***/ }),
-/* 90 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(13)
-/* script */
-var __vue_script__ = null
-/* template */
-var __vue_template__ = __webpack_require__(91)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/views/category.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-33ab2ab1", Component.options)
-  } else {
-    hotAPI.reload("data-v-33ab2ab1", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 91 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    category\n")])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-33ab2ab1", module.exports)
-  }
-}
-
-/***/ }),
+/* 90 */,
+/* 91 */,
 /* 92 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -25110,6 +25069,10 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
     },
     updateAuthState: function updateAuthState(state, payload) {
         state.auth = payload;
+    },
+    updateCurrentUser: function updateCurrentUser(state, payload) {
+        state.user = payload;
+        console.log(payload);
     }
 });
 
@@ -53915,8 +53878,11 @@ module.exports = Component.exports
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store_api__ = __webpack_require__(235);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+//
+//
 //
 //
 //
@@ -53948,9 +53914,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  methods: {
+    logout: function logout() {
+      Object(__WEBPACK_IMPORTED_MODULE_1__store_api__["b" /* logout */])();
+    }
 
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapState */])(['login', 'auth', 'loading']))
-
+  },
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapState */])(["login", "auth", "loading", "user"]))
 });
 
 /***/ }),
@@ -53996,13 +53966,14 @@ var render = function() {
                   [_vm._v(" Github")]
                 ),
                 _vm._v(" "),
-                _c("button", { staticClass: "btn bitbucket btn-block ml-0" }, [
-                  _vm._v(" Bitbucket")
-                ]),
-                _vm._v(" "),
-                _c("button", { staticClass: "btn linkedin btn-block ml-0" }, [
-                  _vm._v(" Linkedin")
-                ]),
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn facebook btn-block ml-0",
+                    attrs: { href: "/login/facebook" }
+                  },
+                  [_vm._v("Facebook")]
+                ),
                 _vm._v(" "),
                 _c("div", {
                   attrs: { slot: "modal-footer" },
@@ -54026,14 +53997,13 @@ var render = function() {
                       staticClass: "img-fluid rounded-circle",
                       attrs: {
                         width: "50",
-                        src:
-                          "https://www.sephora.com/productimages/product/p427643-av-06-zoom.jpg",
+                        src: _vm.user.details.avatar,
                         alt: "Avatar"
                       }
                     })
                   ]),
                   _vm._v(" "),
-                  _c("span", [_vm._v("Stemate Florentin")])
+                  _c("span", [_vm._v(_vm._s(_vm.user.details.name))])
                 ]),
                 _vm._v(" "),
                 _c("b-dropdown-item", { attrs: { href: "#" } }, [
@@ -54042,8 +54012,8 @@ var render = function() {
                 _vm._v(" "),
                 _c("b-dropdown-divider"),
                 _vm._v(" "),
-                _c("b-dropdown-item", { attrs: { href: "#" } }, [
-                  _vm._v("Sign out")
+                _c("b-dropdown-item-button", { on: { click: _vm.logout } }, [
+                  _vm._v("\n                    Sign out \n            ")
                 ])
               ],
               2
@@ -54156,6 +54126,37 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 234 */,
+/* 235 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = logout;
+/* harmony export (immutable) */ __webpack_exports__["a"] = getAuthStatus;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store_index__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app__ = __webpack_require__(77);
+
+
+function logout() {
+    axios.post('logout').then(function (response) {
+        __WEBPACK_IMPORTED_MODULE_0__store_index__["a" /* default */].commit('updateAuthState', false);
+        __WEBPACK_IMPORTED_MODULE_0__store_index__["a" /* default */].commit('updateCurrentUser', null);
+    });
+}
+function getAuthStatus() {
+
+    axios.get("/api/auth").then(function (response) {
+        console.log(response);
+        if (response.data.data == null) {
+            __WEBPACK_IMPORTED_MODULE_0__store_index__["a" /* default */].commit('updateAuthState', false);
+        } else {
+            __WEBPACK_IMPORTED_MODULE_0__store_index__["a" /* default */].commit('updateAuthState', true);
+            __WEBPACK_IMPORTED_MODULE_0__store_index__["a" /* default */].commit('updateCurrentUser', response.data.data);
+        }
+    });
+}
 
 /***/ })
 /******/ ]);

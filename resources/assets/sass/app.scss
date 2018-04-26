@@ -6,14 +6,9 @@
     @import "global";
     .btn {
         margin-left: 8px;
-        &.bitbucket {
+        &.facebook {
             color: white;
-            background-color: $bitbucket;
-            margin-left: 8px;
-        }
-        &.linkedin {
-            color: white;
-            background-color: $linkedin;
+            background-color: $facebook;
             margin-left: 8px;
         }
         &.github {

@@ -18,7 +18,7 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    protected $appends = ["details"];
+    protected $appends = ["details", "socialLinks"];
     /**
      * User Posts relation
      *
@@ -34,6 +34,16 @@ class User extends Authenticatable
         return $this->hasMany(SocialProfile::class);
     }
 
+    public function socialLinks()
+    {
+        $socialLinks = $this->profiles()->pluck('type', 'url')->flip();
+
+        return $socialLinks;
+    }
+    public function getSocialLinksAttribute()
+    {
+        return $this->socialLinks();
+    }
     public function details()
     {
         return $this->profiles()->first();

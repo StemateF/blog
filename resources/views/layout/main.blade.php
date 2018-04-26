@@ -27,7 +27,7 @@
 					<b-collapse is-nav id="nav_collapse">
 						<b-navbar-nav>
 							<b-nav-item :to="{name:'home'}">Home</b-nav-item>
-							<b-nav-item :to="{name:'categories'}">Categories</b-nav-item>
+							{{-- <b-nav-item :to="{name:'categories'}">Categories</b-nav-item> --}}
 							<b-nav-item :to="{name:'about'}">About Me</b-nav-item>
 						</b-navbar-nav>
 						<!-- Right aligned nav items -->
@@ -39,10 +39,10 @@
 				</b-navbar>
 				<b-container>
 					<b-row>
-						<b-col sm="8">
+						<b-col >
 							<router-view></router-view>
 						</b-col>
-						<b-col sm="4">
+						<b-col sm="4" v-if="showSideBar">
 							<div class="bg-white mb-4" style="height:200px">
 								ad
 							</div>

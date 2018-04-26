@@ -12,6 +12,7 @@
  */
 Route::get('login/{driver}/', "Auth\LoginController@login");
 Route::get('login/{driver}/callback', "Auth\LoginController@callback");
+Route::post('logout', "Auth\LoginController@logout")->name('logout');
 
 Route::get(
     'api/auth',

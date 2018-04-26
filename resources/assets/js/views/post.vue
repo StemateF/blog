@@ -1,37 +1,42 @@
 <template>
-	<div>
-			<h1>{{ post.title }}</h1>
-			<div>{{ post.body }}</div>
-			<router-link :to="{ name : 'post', params: { id:2 }}">ssssssssss</router-link>
+	<div class="card">
+		<img class="card-img-top" src="https://i1.wp.com/wp.laravel-news.com/wp-content/uploads/2018/04/20-eloquent-tricks.png?resize=1400%2C709"  alt="Card image cap">
+		<div class="card-body">
+			<h5 class="card-title">{{post.title}}</h5>
+			<p class="card-text">{{post.body}}</p>
+		</div>
 	</div>
 </template>
 <script>
 export default {
-	data() {
-		return { post: "" };
-	},
+  beforeCreate() {
+    this.$root.showSideBar = false;
+  },
+  data() {
+    return { post: "" };
+  },
 
-	beforeRouteEnter: (to, from, next) => {
-		console.log("before");
-		axios.get("/api/posts/" + to.params.id).then(response => {
-			next(vm => {
-				vm.setData(response.data.data);
-			});
-		});
-	},
+  beforeRouteEnter: (to, from, next) => {
+    console.log("before");
+    axios.get("/api/posts/" + to.params.id).then(response => {
+      next(vm => {
+        vm.setData(response.data.data);
+      });
+    });
+  },
 
-	beforeRouteUpdate(to, from, next) {
-		this.post = '';
-		axios.get("/api/posts/" + to.params.id).then(response => {
-			this.setData( response.data.data);
-			next();
-		});
-	},
-	
-	methods: {
-		setData(post) {
-			this.post = post;
-		}
-	}
+  beforeRouteUpdate(to, from, next) {
+    this.post = "";
+    axios.get("/api/posts/" + to.params.id).then(response => {
+      this.setData(response.data.data);
+      next();
+    });
+  },
+
+  methods: {
+    setData(post) {
+      this.post = post;
+    }
+  }
 };
 </script>

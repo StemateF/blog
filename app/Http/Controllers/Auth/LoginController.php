@@ -22,7 +22,7 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
      */
-    private $_alowedDrivers = ['github', 'bitbucket'];
+    private $_alowedDrivers = ['github', 'facebook', 'twitter'];
     use AuthenticatesUsers;
 
     /**
@@ -44,6 +44,7 @@ class LoginController extends Controller
 
     public function login(string $driver)
     {
+        // dd($driver);
         if (in_array($driver, $this->_alowedDrivers)) {
             return Socialite::driver($driver)->redirect();
         } else {
@@ -53,6 +54,7 @@ class LoginController extends Controller
     public function callback(string $driver)
     {
         $user = Socialite::driver($driver)->user();
+
         $newUser = SocialProfile::attempt($user->id, $driver)->first();
         if ($newUser) {
             Auth::loginUsingId($newUser->user_id);
@@ -65,10 +67,16 @@ class LoginController extends Controller
         $socialProfile->email = $user->user['email'];
         $socialProfile->type = $driver;
         $socialProfile->profile_id = $user->id;
+        $socialProfile->avatar = $user->avatar;
         $newUser->profiles()->save($socialProfile);
 
         Auth::loginUsingId($newUser->user_id);
 
         return back();
+    }
+
+    public function logout()
+    {
+        Auth::logout();
     }
 }

@@ -4,8 +4,7 @@
             <button v-b-modal.loginModal class="btn btn-outline-primary">Sign in</button>
             <b-modal  centered  title="Sign in with" id="loginModal">
                 <a href="/login/github" class="btn github btn-block ml-0"> Github</a>
-                <button class="btn bitbucket btn-block ml-0"> Bitbucket</button>
-                <button class="btn linkedin btn-block ml-0"> Linkedin</button>
+                <a href="/login/facebook" class="btn facebook btn-block ml-0">Facebook</a>
                 <div slot="modal-footer"></div>
             </b-modal>
         </div>
@@ -13,26 +12,33 @@
             <b-dropdown variant="link" size="lg" no-caret>
                 <template slot="button-content">
                     <span>
-                        <img class="img-fluid rounded-circle" width="50" src="https://www.sephora.com/productimages/product/p427643-av-06-zoom.jpg" alt="Avatar">
+                        <img class="img-fluid rounded-circle" width="50" :src="user.details.avatar" alt="Avatar">
                     </span>
-                    <span>Stemate Florentin</span>
+                    <span>{{user.details.name}}</span>
                 </template>
                 <b-dropdown-item href="#">Setings</b-dropdown-item>
                 <b-dropdown-divider></b-dropdown-divider>
-                <b-dropdown-item href="#">Sign out</b-dropdown-item>
+                <b-dropdown-item-button v-on:click="logout">
+                        Sign out 
+                </b-dropdown-item-button>
+              
             </b-dropdown>
         </div>
     </div>
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex';
-
+import { mapMutations, mapState } from "vuex";
+import {logout as apiLogout} from "../store/api";
 export default {
+  methods:{
+      logout:()=>{
+          apiLogout();
+        }
 
- computed: {
-        ...mapState(['login', 'auth', 'loading'])
-    }
-
+  },
+  computed: {
+    ...mapState(["login", "auth", "loading","user"])
+  }
 };
 </script>

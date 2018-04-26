@@ -3,7 +3,7 @@ import router from "./routes"
 import store from './store'
 import BootstrapVue from 'bootstrap-vue'
 import { mapMutations, mapState } from 'vuex';
-
+import { getAuthStatus as apiAuth } from './store/api'
 window._ = require('lodash');
 window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -24,37 +24,27 @@ Vue.component('loader', require('./components/loader.vue'))
 
 
 
-const vm = new Vue({
+export const vm = new Vue({
     el: '#app',
     router,
     store,
     created() {
         if (this.auth == null) {
-            this.getUser();
+            apiAuth();
 
         }
     },
+    data: {
+        showSideBar: true
+    },
     methods: {
-        getUser: function() {
-            axios.get("/api/auth").then(response => {
-                console.log(response);
-                if (response.data.data == null) {
-                    store.commit('updateAuthState', false);
-                } else {
-                    store.commit('updateAuthState', true);
-                    this.user = response.data.data;
-                }
 
-            });
-        },
         ...mapMutations(['showLoading', "updateAuthState"])
     },
     computed: {
-        ...mapState(['auth', 'loading'])
+        ...mapState(['auth', 'loading', 'user'])
     },
-    data: {
-        user: null,
-    }
+
 
 });
 
@@ -67,4 +57,4 @@ router.beforeEach((to, from, next) => {
 
 router.afterEach(() => {
     store.commit('showLoading', false)
-});
+})

@@ -20,6 +20,7 @@ class CreateSocialProfilesTable extends Migration
             $table->string("name");
             $table->string("email");
             $table->string("url");
+            $table->string("avatar");
             $table->string("type");
 
             $table->unsignedInteger('user_id');

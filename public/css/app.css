@@ -10449,6 +10449,10 @@ table.b-table > tbody > tr.b-table-details > td {
   width: 100%;
 }
 
+.post .more-link {
+  z-index: 10;
+}
+
 .bg-white {
   background-color: white;
 }
@@ -10474,15 +10478,9 @@ table.b-table > tbody > tr.b-table-details > td {
   margin-left: 8px;
 }
 
-.btn.bitbucket {
+.btn.facebook {
   color: white;
-  background-color: #205081;
-  margin-left: 8px;
-}
-
-.btn.linkedin {
-  color: white;
-  background-color: #0077b5;
+  background-color: #3b5998;
   margin-left: 8px;
 }
 
