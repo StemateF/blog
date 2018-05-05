@@ -47,9 +47,9 @@ class LoginController extends Controller
         // dd($driver);
         if (in_array($driver, $this->_alowedDrivers)) {
             return Socialite::driver($driver)->redirect();
-        } else {
-            abort(404);
         }
+        
+        abort(404);
     }
     public function callback(string $driver)
     {

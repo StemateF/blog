@@ -54,14 +54,11 @@
 </template>
 
 <script>
-    export default  {
-        props:['post'],
+import { post } from "../defaults.js";
 
-        // data:{
-        //     title:post.title,
-        //     id:post.id,
-        //     excerpt:post.excerpt,
+export default {
+  props: ["post"],
 
-        // }
-    }
+  data: post
+};
 </script>

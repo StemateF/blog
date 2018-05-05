@@ -12,10 +12,10 @@ let mix = require('laravel-mix');
  */
 mix.browserSync({
     proxy: {
-        target: 'localhost:8000',
-        reqHeaders: function() {
+        target: 'blog.lo',
+        reqHeaders: function () {
             return {
-                host: "localhost:3002"
+                host: "blog.lo"
             };
         }
     },

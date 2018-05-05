@@ -9,7 +9,6 @@ export default {
     },
     updateCurrentUser(state, payload) {
         state.user = payload;
-        console.log(payload)
     }
 
 }

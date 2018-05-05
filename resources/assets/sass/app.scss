@@ -4,6 +4,7 @@
     @import "~bootstrap/scss/bootstrap";
     @import "~bootstrap-vue/dist/bootstrap-vue";
     @import "global";
+    @import "singlePost";
     .btn {
         margin-left: 8px;
         &.facebook {
@@ -17,12 +18,17 @@
             margin-left: 8px;
         }
     }
-    
-    body,
+
     html {
-        color: gray("700")
+        font-size: 16px;
+        body {
+            color: gray("700");
+            p {
+                font-size: 1.3rem;
+            }
+        }
     }
-    
+
     #app {
         a,
         .btn-link {

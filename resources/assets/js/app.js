@@ -2,8 +2,13 @@ import Vue from 'vue';
 import router from "./routes"
 import store from './store'
 import BootstrapVue from 'bootstrap-vue'
-import { mapMutations, mapState } from 'vuex';
-import { getAuthStatus as apiAuth } from './store/api'
+import {
+    mapMutations,
+    mapState
+} from 'vuex';
+import {
+    getAuthStatus as apiAuth
+} from './store/api'
 window._ = require('lodash');
 window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -49,7 +54,6 @@ export const vm = new Vue({
 });
 
 router.beforeEach((to, from, next) => {
-    console.log(this.loading);
 
     store.commit('showLoading', true)
     next()
