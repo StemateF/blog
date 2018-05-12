@@ -1,5 +1,8 @@
 <template>
+<div>
 	<div class="card">
+
+    
 		<img class="card-img-top" src="https://i1.wp.com/wp.laravel-news.com/wp-content/uploads/2018/04/20-eloquent-tricks.png?resize=1400%2C709"  alt="Card image cap">
 
 		<div class="card-body">
@@ -15,18 +18,30 @@
         <p class="card-text">{{post.body}}</p>
       </div>
 		</div>
+    <div class="card-footer bg-white ">
+      <postfooter v-bind:user="post.author" ></postfooter>
+    </div>
 	</div>
+    <comments v-bind:comments="post.comments"></comments>
+ </div>
 </template>
 
 <script>
+import UserFooterComponent from "../components/UserFooterComponent";
+import PostCommentsComponent from "../components/PostCommentsComponent";
+import { post } from "../defaults";
 export default {
+  components: {
+    postfooter: UserFooterComponent,
+    comments: PostCommentsComponent
+  },
+
   beforeCreate() {
     this.$root.showSideBar = false;
   },
-  data() {
-    return { post: "" };
+  data: () => {
+    return { post: post };
   },
-
   beforeRouteEnter: (to, from, next) => {
     console.log("before");
     axios.get("/api/posts/" + to.params.id).then(response => {

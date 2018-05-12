@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Http\Resources\CategoryResource;
+use App\Http\Resources\CommentCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PostResource extends JsonResource
@@ -25,6 +26,7 @@ class PostResource extends JsonResource
             'image' => $this->image,
             //@todo implement category
             'category' => new CategoryResource($this->category),
+            'comments' => new CommentCollection($this->comments()->paginate(10)),
             'author' => new UserResource($this->user),
         ];
     }

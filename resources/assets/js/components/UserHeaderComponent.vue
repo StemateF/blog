@@ -29,16 +29,15 @@
 
 <script>
 import { mapMutations, mapState } from "vuex";
-import {logout as apiLogout} from "../store/api";
+import { logout as apiLogout } from "../store/api";
 export default {
-  methods:{
-      logout:()=>{
-          apiLogout();
-        }
-
+  methods: {
+    logout: () => {
+      apiLogout();
+    }
   },
   computed: {
-    ...mapState(["login", "auth", "loading","user"])
+    ...mapState(["login", "auth", "loading", "user"])
   }
 };
 </script>
