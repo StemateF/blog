@@ -13,14 +13,14 @@ export const user = {
 }
 
 export const comment = {
-    body: 'placeholder',
+    body: "placeholder",
     author: user,
 }
 
 
 export const category = {
     id: 0,
-    name: 'Placehlder cat'
+    name: "Placehlder cat"
 }
 
 export const post = {

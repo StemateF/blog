@@ -18,6 +18,7 @@
 	<body>
 		<div id="app">
 			<loader v-bind:loading="loading" ></loader>
+			<admin-control-menu></admin-control-menu>
 			<b-navbar toggleable="md" type="light" variant="white" class="mb-4">
 				<div class="container">
 					<b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
@@ -29,6 +30,7 @@
 							<b-nav-item :to="{name:'home'}">Home</b-nav-item>
 							{{-- <b-nav-item :to="{name:'categories'}">Categories</b-nav-item> --}}
 							<b-nav-item :to="{name:'about'}">About Me</b-nav-item>
+							
 						</b-navbar-nav>
 						<!-- Right aligned nav items -->
 						<b-navbar-nav class="ml-auto">

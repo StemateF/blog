@@ -19,15 +19,10 @@ if (window.token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
-
-
-
-
 Vue.use(BootstrapVue);
-Vue.component('user-header', require('./components/UserHeaderComponent.vue'))
+Vue.component('user-header', require('./components/UserHeaderComponent.vue'));
+Vue.component('admin-control-menu', require('./components/AdminControlPanelComponent.vue'));
 Vue.component('loader', require('./components/loader.vue'))
-
-
 
 export const vm = new Vue({
     el: '#app',
@@ -49,7 +44,6 @@ export const vm = new Vue({
     computed: {
         ...mapState(['auth', 'loading', 'user'])
     },
-
 
 });
 

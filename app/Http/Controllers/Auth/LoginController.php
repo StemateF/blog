@@ -53,7 +53,7 @@ class LoginController extends Controller
     }
     public function callback(string $driver)
     {
-        $user = Socialite::driver($driver)->user();
+        $user = Socialite::driver($driver)->stateless()->user();
 
         $newUser = SocialProfile::attempt($user->id, $driver)->first();
         if ($newUser) {

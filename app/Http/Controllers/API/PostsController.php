@@ -7,9 +7,18 @@ use App\Http\Resources\PostCollection;
 use App\Http\Resources\PostResource;
 use App\Post;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreBlogPost;
+use App\Category;
+use App\Service\StorePostService;
 
 class PostsController extends Controller
 {
+    protected $storePostSetvice;
+
+    public function __construct()
+    {
+        $this->storePostService = new StorePostService();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -26,8 +35,9 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBlogPost $request)
     {
+        dd($this->storePostService->make($request->all()));
     }
 
     /**

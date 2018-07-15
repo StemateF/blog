@@ -10474,17 +10474,40 @@ table.b-table > tbody > tr.b-table-details > td {
   background-color: #ced4da;
 }
 
-.btn {
-  margin-left: 8px;
+.abs-vc {
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.abs-hc {
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.abs-hc.abs-vc {
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+#admin-menu {
+  position: fixed;
+}
+
+.noScroll {
+  overflow: hidden;
 }
 
 .btn.facebook {
+  margin-left: 8px;
   color: white;
   background-color: #3b5998;
   margin-left: 8px;
 }
 
 .btn.github {
+  margin-left: 8px;
   color: white;
   background-color: #333;
   margin-left: 8px;

@@ -9,6 +9,6 @@ export default {
     },
     updateCurrentUser(state, payload) {
         state.user = payload;
-    }
+    },
 
 }

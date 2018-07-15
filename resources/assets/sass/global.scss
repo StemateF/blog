@@ -19,3 +19,26 @@
         background-color: gray('400');
     }
 }
+
+.abs-vc{
+    top:50%;
+    transform: translateY(-50%);
+}
+
+.abs-hc{
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.abs-hc.abs-vc{
+    transform: translate(-50%,-50%);
+    
+}
+
+#admin-menu {
+  position: fixed;
+}
+
+.noScroll{
+    overflow: hidden;
+}

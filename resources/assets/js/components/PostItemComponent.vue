@@ -6,7 +6,7 @@
                 <div class="card-title">
                     <div class="categories"> 
                         <!-- <router-link :to="{name:'category',params:{slug:post.category.name}}" class="text-primary text-uppercase">{{post.category.name}}</router-link>  -->
-                        <span class="text-primary text-uppercase">{{post.category.name}}</span> / 
+                        <span class="text-primary text-uppercase">{{post.category.name}}</span> 
                         <time :datetime="post.date_raw" class="text-muted">
                            {{post.date}}
                         </time>
@@ -54,11 +54,16 @@
 </template>
 
 <script>
-import { post } from "../defaults.js";
+import { post as defaultPost } from "../defaults.js";
 
 export default {
-  props: ["post"],
-
-  data: post
+  created: function() {
+    console.log(this.post);
+  },
+  props: {
+    post: {
+      default: [defaultPost]
+    }
+  }
 };
 </script>

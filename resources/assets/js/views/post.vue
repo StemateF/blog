@@ -1,29 +1,26 @@
 <template>
-<div>
-	<div class="card">
-
-    
-		<img class="card-img-top" src="https://i1.wp.com/wp.laravel-news.com/wp-content/uploads/2018/04/20-eloquent-tricks.png?resize=1400%2C709"  alt="Card image cap">
-
-		<div class="card-body">
-      <div class="col-lg-9">
-        <div class="categories"> 
-          <!-- <router-link :to="{name:'category',params:{slug:post.category.name}}" class="text-primary text-uppercase">{{post.category.name}}</router-link>  -->
-          <span class="text-primary text-uppercase">{{post.category.name}}</span> / 
-          <time :datetime="post.date_raw" class="text-muted">
-              {{post.date}}
-          </time>
+  <div>
+    <div class="card">
+      <img class="card-img-top" src="https://i1.wp.com/wp.laravel-news.com/wp-content/uploads/2018/04/20-eloquent-tricks.png?resize=1400%2C709"  alt="Card image cap">
+      <div class="card-body">
+        <div class="col-lg-9">
+          <div class="categories"> 
+            <!-- <router-link :to="{name:'category',params:{slug:post.category.name}}" class="text-primary text-uppercase">{{post.category.name}}</router-link>  -->
+            <span class="text-primary text-uppercase">{{post.category.name}}</span> / 
+            <time :datetime="post.date_raw" class="text-muted">
+                {{post.date}}
+            </time>
+          </div>
+          <h1 class="card-title ">{{ post.title}}</h1>
+          <p class="card-text">{{post.body}}</p>
         </div>
-        <h1 class="card-title ">{{ post.title}}</h1>
-        <p class="card-text">{{post.body}}</p>
       </div>
-		</div>
-    <div class="card-footer bg-white ">
-      <postfooter v-bind:user="post.author" ></postfooter>
+      <div class="card-footer bg-white ">
+        <postfooter v-bind:user="post.author" ></postfooter>
+      </div>
     </div>
-	</div>
     <comments v-bind:comments="post.comments"></comments>
- </div>
+  </div>
 </template>
 
 <script>

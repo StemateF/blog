@@ -1,5 +1,5 @@
-<?php
 
+<?php
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -11,7 +11,7 @@
 |
  */
 
-Route::namespace ('API')->middleware('api')->group(
+Route::namespace('API')->middleware('api')->group(
     function () {
         Route::apiResource('posts', 'PostsController');
 

@@ -6,13 +6,14 @@
     @import "global";
     @import "singlePost";
     .btn {
-        margin-left: 8px;
         &.facebook {
+            margin-left: 8px;
             color: white;
             background-color: $facebook;
             margin-left: 8px;
         }
         &.github {
+            margin-left: 8px;            
             color: white;
             background-color: $github;
             margin-left: 8px;

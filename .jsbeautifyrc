@@ -1,0 +1,19 @@
+{
+    "end_with_newline": true,
+    "indent_char": " ",
+    "preserve_newlines": true,
+    "max_preserve_newlines": 2,
+    "brace_style": "none",
+    "jslint_happy": true,
+    "break_chained_methods": true,
+    "space_after_anon_function": false,
+    "js": {
+        "indent_level": 2
+    },
+    "html":
+    {
+        "indent_body_inner_html": false,
+        "indent_inner_html": false,
+        "indent_head_inner_html": false
+    }
+}
