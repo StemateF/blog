@@ -12,7 +12,7 @@
             </time>
           </div>
           <h1 class="card-title ">{{ post.title}}</h1>
-          <p class="card-text">{{post.body}}</p>
+          <p class="card-text" v-html="post.body"></p>
         </div>
       </div>
       <div class="card-footer bg-white ">
@@ -22,8 +22,8 @@
     <comments v-bind:comments="post.comments"></comments>
   </div>
 </template>
-
 <script>
+let highlight = require("highlight.js");
 import UserFooterComponent from "../components/UserFooterComponent";
 import PostCommentsComponent from "../components/PostCommentsComponent";
 import { post } from "../defaults";
@@ -33,6 +33,10 @@ export default {
     comments: PostCommentsComponent
   },
 
+  updated: function() {
+    let xxx = highlight.initHighlighting();
+  },
+
   beforeCreate() {
     this.$root.showSideBar = false;
   },
@@ -40,7 +44,6 @@ export default {
     return { post: post };
   },
   beforeRouteEnter: (to, from, next) => {
-    console.log("before");
     axios.get("/api/posts/" + to.params.id).then(response => {
       next(vm => {
         vm.setData(response.data.data);

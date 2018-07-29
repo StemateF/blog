@@ -18,6 +18,7 @@ class StorePostService
         $user = Auth::user();
         $post = new Post();
         $post->title = $request['title'];
+        $post->original = $request['body'];
         $post->body = $this->markdown->render($request['body']);
         $post->category_id = Category::firstOrCreate(['name' => $request['category']])->id;
 

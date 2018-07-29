@@ -30,6 +30,11 @@ Route::get('/swap/{id}', function ($id) {
     return back();
 });
 
+Route::prefix('api')->group(function () {
+    Route::apiResource('posts', 'API\PostsController');
+});
+
+
 Route::prefix('/')->group(function () {
     Route::view('{any}', 'welcome')->where('any', '.*');
 });

@@ -1,5 +1,4 @@
 <template>
-
 	<div>
 			<post  v-for="post in posts" v-bind:post="post" v-bind:key="post.id" ></post>
 	</div>
@@ -11,6 +10,7 @@ import { mapMutations } from "vuex";
 export default {
   components: { post: PostItemComponentVue },
   created: function() {
+    console.log("xxxxxx");
     this.$store.commit("showLoading", true);
     this.getPosts();
     this.$root.showSideBar = true;
@@ -22,6 +22,7 @@ export default {
   },
   methods: {
     getPosts() {
+      console.log("ssss");
       axios.get("/api/posts").then(response => {
         this.posts = response.data.data;
         this.$store.commit("showLoading", false);

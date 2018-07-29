@@ -26,4 +26,10 @@ class Post extends Model
         return $this->hasMany(Comment::class)
             ->whereCommentId(null);
     }
+
+    public function setBodyAttribute($value)
+    {
+        $this->attributes['body'] = $value;
+        $this->attributes['excerpt'] = str_limit(strip_tags($value));
+    }
 }

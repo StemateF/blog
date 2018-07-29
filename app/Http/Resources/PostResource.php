@@ -19,7 +19,7 @@ class PostResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'excerpt' => $this->excerp,
+            'excerpt' => $this->excerpt,
             'body' => $this->body,
             'date' => $this->created_at->format("F d, Y"),
             'date_raw' => $this->created_at->toIso8601String(),

@@ -13,7 +13,6 @@
 
 Route::namespace('API')->middleware('api')->group(
     function () {
-        Route::apiResource('posts', 'PostsController');
 
         // Route::get(
         //     '/posts',

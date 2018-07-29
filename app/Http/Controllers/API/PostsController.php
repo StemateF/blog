@@ -26,7 +26,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return new PostCollection(Post::paginate(10));
+        return new PostCollection(Post::latest()->paginate(10));
     }
 
     /**
@@ -37,7 +37,7 @@ class PostsController extends Controller
      */
     public function store(StoreBlogPost $request)
     {
-        dd($this->storePostService->make($request->all()));
+        $this->storePostService->make($request->all());
     }
 
     /**
