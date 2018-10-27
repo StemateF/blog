@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->text('excerpt');
             $table->text('body');
-            $table->text('original');
+            // $table->text('original');
 
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')
